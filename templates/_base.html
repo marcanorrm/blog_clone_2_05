@@ -12,6 +12,16 @@
 <body>
     <header>
         <a href="{% url 'post-list' %}"><h1>Blog de Miguel</h1></a>
+
+        <!-- mostrar el nombre del usuario autenticado -->
+        {% if user.is_authenticated %}
+            <p> Bienvenido {{ user.username }}!</p>
+        {% else %}
+            <p>Bienvenido visitante!</p> 
+            <!-- Enlace para inicio de sesion -->
+            <a href="{% url 'login' %}">Iniciar sesión</a>
+        {% endif %}
+    
         <!-- enlace para crear nuevo post -->
         <a href="{% url 'post-create' %}">Crear nuevo post</a>
         
