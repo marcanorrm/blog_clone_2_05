@@ -7,10 +7,11 @@
     <p>Última actualización: {{ post.updated_at|date:"d/m/Y"}}</p>
     <p>{{ post.content }}</p>
     
-    <!-- boton para editar el post -->
+    <!-- validar si el usuario es el autor del post -->
+    {% if user.is_authenticated and user == post.author %}
     <a href="{% url 'post-update' post.id %}">Editar</a>
-    <!-- boton para eliminar el post -->
     <a href="{% url 'post-delete' post.id %}">Eliminar</a>
+    {% endif %}
 {% endblock %}
 
 

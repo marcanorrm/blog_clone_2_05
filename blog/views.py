@@ -7,22 +7,27 @@ from django.views.generic.edit import (
                                         DeleteView
                                         )
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin,ListView):
     model = Post
     template_name = 'post-list.html'
 
 # details view
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin,DetailView):
     model = Post
     template_name = 'post-detail.html'
     
 # post crear o createview
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin,CreateView):
     model = Post
     template_name = 'post-create.html'
     fields = ['title', 'content', 'author']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
     
 # update view
 class PostUpdateView(UpdateView):
