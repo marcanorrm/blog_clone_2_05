@@ -1,6 +1,59 @@
-{% extends "_base.html" %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Posts</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 40px;
+        }
 
-{% block content %}
+        h2 {
+            color: #b00;
+            border-bottom: 2px solid #b00;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 12px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #f0f0f0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #b00;
+        }
+
+        p {
+            margin-top: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
     <h2>Blog Posts</h2>
     <ul>
         {% for post in post_list %}
@@ -8,11 +61,10 @@
                 {{ post.author }} -
                 {{ post.created_at }}
             </li>
-        {% endfor %} 
+        {% endfor %}
     </ul>
-    <!--que muestre cuantos post hay-->
-    
-    <p>total posts: {{ post_count }}</p>
-    
-{% endblock content %}
 
+    <p>Total posts: {{ post_count }}</p>
+
+</body>
+</html>
